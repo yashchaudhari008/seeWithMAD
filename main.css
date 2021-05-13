@@ -1,0 +1,142 @@
+:root {
+    --main_color: rgb(27, 139, 214);
+    --suppliment_color: rgb(16, 77, 117) ;
+    --back_color: rgb(245, 245, 245);
+
+    --button_bg_color: black;
+    --button_txt_color: white;
+
+    --border_radius: 5px;
+
+    --msg_color: var(--back_color);
+}
+
+html,body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    font-family: Comfortaa, Helvetica, sans-serif;
+}
+body {
+    display: flex;
+    color: var(--back_color);
+}
+footer {
+    position: absolute;
+    bottom:0;
+    padding-bottom: 10px;
+}
+button {
+    font-family: Comfortaa, Helvetica, sans-serif;
+    outline: none;
+    color: var(--button_txt_color);
+    background-color: var(--button_bg_color);
+    border: none;
+    margin: 1px;
+    padding: 8px;
+    padding-inline: 12px;
+    border-radius: 5px;
+}
+
+button:hover {
+    color: var(--button_bg_color);
+    background-color: var(--button_txt_color);
+}
+
+button:disabled {
+    opacity: 0.5;
+    /* background-color: gray;
+    color: black; */
+    pointer-events: none;
+}
+
+video {
+    background-color: black;
+    height: 100%;
+    width: 100%;
+}
+
+.hide {
+    display: block;
+    visibility: hidden;
+}
+
+.appContainer{
+    flex: 1;
+    display: flex;
+}
+
+input {
+    font-family: Comfortaa, Helvetica, sans-serif;
+    margin: 2px;
+    padding: 8px;
+    padding-inline: 12px;
+    border: none;
+    border-radius: var(--border_radius);
+    outline: none;
+    /* color: white; */
+    color:var(--main_color);
+}
+
+#videoContainer {
+    flex: 4;
+}
+
+#sideContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+#msgContainer {
+    background-color: var(--back_color);
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    
+}
+#msgs {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: var(--msg_color);
+}
+.r {
+    border-radius: var(--border_radius);
+    align-self: flex-start;
+    max-width: 200px;
+    background-color: rgb(51, 62, 70);
+    padding: 10px;
+    margin: 2px;
+}
+.s {
+    border-radius: var(--border_radius);
+    align-self: flex-end;
+    max-width: 200px;
+    background-color: var(--main_color);
+    padding: 10px;
+    margin: 2px;
+}
+
+#sendBox {
+    display: flex;
+    background-color: var(--suppliment_color);
+    padding: 5px;
+}
+#sendInput {
+    flex: 5;
+}
+#sendBTN {
+    flex:1;
+}
+
+#buttonContainer {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: var(--main_color);
+}
