@@ -16,3 +16,6 @@ function fullscreen(ele){
 		document.documentElement.requestFullscreen();
 	}
 }
+function gotoHOME(){
+    window.location.href = '../';
+}

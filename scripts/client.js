@@ -72,7 +72,20 @@ joinStreamBTN.onclick = async () => {
 }
 
 closeStreamBTN.onclick = async () => {
-    peerConnection.close();
+
+    const hostDoc = await firestore.collection("hosts").doc(hostID.value);
+    const offers = await hostDoc.collection("offers");
+    const answers = await hostDoc.collection("answers");
+
+    await offers.get().then( qS => qS.forEach( doc => doc.ref.delete()));
+    await answers.get().then( qS => qS.forEach( doc => doc.ref.delete()));
+    await hostDoc.delete(); 
+    
+    await peerConnection.close();
+    console.log(peerConnection.connectionState);
+
+    video.srcObject = null;
+    gotoHOME();
 }
 
 function sendMSG(){
@@ -83,8 +96,16 @@ function sendMSG(){
     msg.value = "";
 }
 
-peerConnection.onconnectionstatechange = () => {
+peerConnection.onconnectionstatechange = async () => {
     console.log(peerConnection.connectionState);
+
+    if (peerConnection.connectionState == 'disconnected'){
+        video.srcObject = null;
+        if (peerConnection){
+            await peerConnection.close();
+        }
+        gotoHOME();
+    }
 }
 
 peerConnection.ondatachannel = e => {
