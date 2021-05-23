@@ -25,3 +25,13 @@ function fullscreen(ele){
 function gotoHOME(){
     window.location.href = '../';
 }
+function toggleChatBox(ele){
+    let container = document.getElementById('sideContainer');
+    container.classList.toggle('hide');
+    if(container.classList.contains('hide')){
+        ele.innerHTML = "Show ChatBox";
+    }
+    else {
+        ele.innerHTML = "Hide ChatBox";
+    }
+}

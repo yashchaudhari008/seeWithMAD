@@ -57,7 +57,7 @@ video {
 }
 
 .hide {
-    display: block;
+    display: none !important;
     visibility: hidden;
 }
 
@@ -80,6 +80,16 @@ input {
 
 #videoContainer {
     flex: 4;
+    position: relative;
+}
+
+#toggleMsgMenu {
+    position: absolute;
+    right: 0;
+    margin: 5px;
+    padding: 5px;
+    color: var(--back_color);
+    background-color: var(--suppliment_color);
 }
 
 #sideContainer {
