@@ -105,7 +105,7 @@ function sendMSG(){
     }
     dataChannel.send(JSON.stringify(msg));
     createMessage("s",msg.name,msg.message);
-    msg.value = "";
+    document.getElementById("sendInput").value = "";
 }
 
 peerConnection.onconnectionstatechange = async () => {
