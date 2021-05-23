@@ -21,6 +21,7 @@ const servers = {
 let peerConnection = new RTCPeerConnection(servers);
 let dataChannel = peerConnection.createDataChannel('messages'); 
 let myStream = null;
+let myName = null;
 
 const video = document.getElementById("hostVideo"); 
 const hostID = document.getElementById("hostID");
@@ -39,6 +40,13 @@ setStreamBTN.onclick = async () => {
 hostStreamBTN.onclick = async () => {
 
     if (myStream === null){ return alert("Can't Host! Set Stream First") }
+    while(localStorage.getItem('userName') == null){
+        myName = prompt("Enter Your Full Name: ");
+        if (myName !== '' && myName !== null){
+            localStorage.setItem("userName",myName);
+        }
+    }
+    myName = localStorage.getItem('userName');
     const hostDoc = firestore.collection("hosts").doc();
     const offers = hostDoc.collection("offers");
     const answers = hostDoc.collection("answers");
@@ -100,10 +108,14 @@ closeStreamBTN.onclick = async () => {
 }
 
 function sendMSG(){
-    let msg = document.getElementById("sendInput")
-    if(msg.value.length <= 1){ return }
-    dataChannel.send(msg.value);
-    createMessage("s",msg.value);
+    let msgData = document.getElementById("sendInput").value;
+    if(msgData.length <= 1){ return }
+    let msg = {
+        name: myName,
+        message: msgData
+    }
+    dataChannel.send(JSON.stringify(msg));
+    createMessage("s",msg.name,msg.message);
     msg.value = "";
 }
 
@@ -122,6 +134,7 @@ peerConnection.onconnectionstatechange = async () => {
     }
     
 }
-dataChannel.onmessage = message => {
-    createMessage("r",message.data);
+dataChannel.onmessage = msg => {
+    let m = JSON.parse(msg.data);
+    createMessage("r",m.name,m.message);
 }

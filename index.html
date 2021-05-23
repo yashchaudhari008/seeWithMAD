@@ -31,8 +31,15 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     <body>
         <div id="header">seeWithMAD</div>
         <br>
+        <p id="welcomeHeader"></p>
         <button onclick="location.href='./pages/host.html'">Host</button>
         <button onclick="location.href='./pages/client.html'">Join</button>
+        <script>
+            console.log(localStorage.getItem('userName'));
+            if (localStorage.getItem('userName') !== null){
+                document.getElementById('welcomeHeader').innerHTML = 'Welcome Back, '+ localStorage.getItem('userName')+"!";
+            }
+        </script>
     </body>
     <footer>
         © Copyright 2020-21. Made with &#10084; by Yash Chaudhari.

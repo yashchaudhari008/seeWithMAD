@@ -104,21 +104,29 @@ input {
     justify-content: flex-end;
     color: var(--msg_color);
 }
+.msg_name {
+    font-family: monospace;
+    font-size: small;
+}
 .r {
     border-radius: var(--border_radius);
     align-self: flex-start;
-    max-width: 200px;
+    width: 200px;
     background-color: rgb(51, 62, 70);
-    padding: 10px;
+    padding: 5px;
     margin: 2px;
 }
 .s {
     border-radius: var(--border_radius);
     align-self: flex-end;
-    max-width: 200px;
+    width: 200px;
     background-color: var(--main_color);
-    padding: 10px;
+    padding: 5px;
     margin: 2px;
+}
+.s p, .r p{
+    margin: 0px;
+    padding: 5px;
 }
 
 #sendBox {

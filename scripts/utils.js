@@ -1,6 +1,12 @@
-function createMessage(type,msg){
-    let element = document.createElement("p");
-    element.innerHTML = msg;
+function createMessage(type,name,msg){
+    let element = document.createElement("div");
+    let nameP = document.createElement("p");
+    let msgP = document.createElement("p");
+    nameP.innerHTML = name;// +": " +msg;
+    msgP.innerHTML = msg;
+    nameP.classList.add("msg_name");
+    element.appendChild(nameP);
+    element.appendChild(msgP);
     
     let div = document.getElementById("msgs");
     div.appendChild(element);
