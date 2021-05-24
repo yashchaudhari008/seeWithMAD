@@ -23,6 +23,7 @@ let dataChannel = null;
 let remoteStream = null;
 let myName = null;
 
+const connectionStatus = document.getElementById("connectionStatus");
 const video = document.getElementById("hostVideo"); 
 const hostID = document.getElementById("hostID");
 const joinStreamBTN = document.getElementById("joinStreamBTN");
@@ -77,6 +78,8 @@ joinStreamBTN.onclick = async () => {
         }
         });
     });
+    toggleHide(joinStreamBTN);
+    toggleHide(closeStreamBTN);
 }
 
 closeStreamBTN.onclick = async () => {
@@ -109,7 +112,7 @@ function sendMSG(){
 }
 
 peerConnection.onconnectionstatechange = async () => {
-    console.log(peerConnection.connectionState);
+    connectionStatus.innerHTML = peerConnection.connectionState.toLocaleUpperCase();
 
     if (peerConnection.connectionState == 'disconnected'){
         video.srcObject = null;
@@ -125,5 +128,8 @@ peerConnection.ondatachannel = e => {
     dataChannel.onmessage = msg => {
         let m = JSON.parse(msg.data);
         createMessage("r",m.name,m.message);
+    }
+    dataChannel.onopen = e => {
+        document.getElementById('sendBTN').disabled = false;
     }
 }

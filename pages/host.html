@@ -5,28 +5,31 @@
         <link rel="stylesheet" href="../main.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa:normal">
         <script src="../scripts/utils.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <div class="appContainer">
             <div id="videoContainer">
                 <video id="hostVideo" autoplay playsinline></video>
+                <button id="toggleMsgMenu" onclick="toggleChatBox(this)">Hide ChatBox</button>
             </div>
 
             <div id="sideContainer">
-                <input id="hostID" readonly>
+                <div id="connectionStatus">NOT STARTED</div>
+                <input id="hostID" placeholder="Host-ID will be displayed here." readonly>
                 <div id="msgContainer">
                     <div id="msgs">
                     </div>
                     
                 </div>
                 <div id="sendBox">
-                    <input id="sendInput">
-                    <button id="sendBTN" onclick="sendMSG()">Send</button>
+                    <input id="sendInput" placeholder="Message goes here...">
+                    <button id="sendBTN" onclick="sendMSG()" disabled>Send</button>
                 </div>
                 <div id="buttonContainer">
                     <button id="setStreamBTN">Set Stream</button>
-                    <button id="hostStreamBTN">Host Stream</button>
-                    <button id="closeStreamBTN">Close Stream</button>
+                    <button id="hostStreamBTN" class="hide">Host Stream</button>
+                    <button id="closeStreamBTN" class="hide">Close Stream</button>
                     <button onclick="fullscreen(this)">Fullscreen</button>
                 </div>
             </div>

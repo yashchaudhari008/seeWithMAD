@@ -23,6 +23,7 @@ let dataChannel = peerConnection.createDataChannel('messages');
 let myStream = null;
 let myName = null;
 
+const connectionStatus = document.getElementById("connectionStatus");
 const video = document.getElementById("hostVideo"); 
 const hostID = document.getElementById("hostID");
 const setStreamBTN = document.getElementById("setStreamBTN");
@@ -35,6 +36,8 @@ setStreamBTN.onclick = async () => {
         peerConnection.addTrack(track, myStream)
     })
     video.srcObject = myStream;
+    toggleHide(setStreamBTN);
+    toggleHide(hostStreamBTN);
 }
 
 hostStreamBTN.onclick = async () => {
@@ -86,6 +89,8 @@ hostStreamBTN.onclick = async () => {
             }
         });
     });
+    toggleHide(hostStreamBTN);
+    toggleHide(closeStreamBTN);
 }
 
 closeStreamBTN.onclick = async () => {
@@ -120,7 +125,7 @@ function sendMSG(){
 }
 
 peerConnection.onconnectionstatechange = async () => {
-    console.log(peerConnection.connectionState);
+    connectionStatus.innerHTML = peerConnection.connectionState.toLocaleUpperCase();
 
     if (peerConnection.connectionState == 'disconnected'){
         myStream.getTracks().forEach(
@@ -137,4 +142,7 @@ peerConnection.onconnectionstatechange = async () => {
 dataChannel.onmessage = msg => {
     let m = JSON.parse(msg.data);
     createMessage("r",m.name,m.message);
+}
+dataChannel.onopen = e => {
+    document.getElementById('sendBTN').disabled = false;
 }

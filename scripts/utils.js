@@ -35,3 +35,6 @@ function toggleChatBox(ele){
         ele.innerHTML = "Hide ChatBox";
     }
 }
+function toggleHide(ele){
+    ele.classList.toggle('hide');
+}

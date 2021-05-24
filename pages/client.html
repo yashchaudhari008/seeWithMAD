@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="../main.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa:normal">
         <script src="../scripts/utils.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <div class="appContainer">
@@ -14,19 +15,20 @@
             </div>
 
             <div id="sideContainer">
+                <div id="connectionStatus">NOT STARTED</div>
                 <div id="msgContainer">
                     <div id="msgs">
                     </div>
                     
                 </div>
                 <div id="sendBox">
-                    <input id="sendInput">
-                    <button id="sendBTN" onclick="sendMSG()">Send</button>
+                    <input id="sendInput" placeholder="Message goes here...">
+                    <button id="sendBTN" onclick="sendMSG()" disabled>Send</button>
                 </div>
                 <div id="buttonContainer">
-                    <input id="hostID">
+                    <input id="hostID"  placeholder="Enter Host-ID Here">
                     <button id="joinStreamBTN">Join Stream</button>
-                    <button id="closeStreamBTN">Close Stream</button>
+                    <button id="closeStreamBTN" class="hide">Close Stream</button>
                     <button onclick="fullscreen(this)">Fullscreen</button>
                 </div>
             </div>

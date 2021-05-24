@@ -99,6 +99,16 @@ input {
     background-color: white;
 }
 
+#connectionStatus{
+    color: var(--back_color);
+    text-align: center;
+    background-color: var(--main_color);
+    border-radius: var(--border_radius);
+    margin: 3px;
+    padding: 2px;
+    font-family: monospace;
+}
+
 #msgContainer {
     background-color: var(--back_color);
     flex:1;
