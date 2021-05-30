@@ -91,6 +91,17 @@ input {
     color: var(--back_color);
     background-color: var(--suppliment_color);
 }
+#toggleMsgMenu .badge {
+    position: absolute;
+    bottom: -20px;
+    right:0px;
+    padding: 5px;
+    padding-inline: 10px;
+    font-size: 10px;
+    border-radius: var(--border_radius);
+    background: var(--main_color);
+    animation: blinker 3s ease-in-out infinite;
+}
 
 #sideContainer {
     flex: 1;
@@ -167,4 +178,10 @@ input {
     flex-wrap: wrap;
     justify-content: center;
     background-color: var(--main_color);
+}
+
+@keyframes blinker {
+    50% {
+      opacity: 40%;
+    }
 }

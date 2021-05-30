@@ -142,6 +142,7 @@ peerConnection.onconnectionstatechange = async () => {
 dataChannel.onmessage = msg => {
     let m = JSON.parse(msg.data);
     createMessage("r",m.name,m.message);
+    updateChatBoxBadge();
 }
 dataChannel.onopen = e => {
     document.getElementById('sendBTN').disabled = false;

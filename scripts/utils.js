@@ -35,6 +35,13 @@ function toggleChatBox(ele){
         ele.innerHTML = "Hide ChatBox";
     }
 }
+function updateChatBoxBadge(){
+    let container = document.getElementById('sideContainer');
+    let ele = document.getElementById('toggleMsgMenu');
+    if(container.classList.contains('hide')){
+        ele.innerHTML = '<span class="badge">NEW MSG</span>'+"Show ChatBox";
+    }
+}
 function toggleHide(ele){
     ele.classList.toggle('hide');
 }
