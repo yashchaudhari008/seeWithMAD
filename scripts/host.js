@@ -10,6 +10,7 @@ const firebaseConfig = {
 
 if (!firebase.apps.length){ firebase.initializeApp(firebaseConfig); }
 const firestore = firebase.firestore();
+const auth = firebase.auth();
 
 const servers = {
     iceServers: [{
@@ -26,9 +27,24 @@ let myName = null;
 const connectionStatus = document.getElementById("connectionStatus");
 const video = document.getElementById("hostVideo"); 
 const hostID = document.getElementById("hostID");
+const signInBTN = document.getElementById("signInBTN");
 const setStreamBTN = document.getElementById("setStreamBTN");
 const hostStreamBTN = document.getElementById("hostStreamBTN");
 const closeStreamBTN = document.getElementById("closeStreamBTN");
+
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        toggleHide(signInBTN);
+        toggleHide(setStreamBTN);
+        myName = user.displayName;
+        localStorage.setItem("userName",myName);
+    }
+});
+
+signInBTN.onclick = async () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithRedirect(provider);
+}
 
 setStreamBTN.onclick = async () => {
     myStream =  await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
@@ -43,13 +59,6 @@ setStreamBTN.onclick = async () => {
 hostStreamBTN.onclick = async () => {
 
     if (myStream === null){ return alert("Can't Host! Set Stream First") }
-    while(localStorage.getItem('userName') == null){
-        myName = prompt("Enter Your Full Name: ");
-        if (myName !== '' && myName !== null){
-            localStorage.setItem("userName",myName);
-        }
-    }
-    myName = localStorage.getItem('userName');
     const hostDoc = firestore.collection("hosts").doc();
     const offers = hostDoc.collection("offers");
     const answers = hostDoc.collection("answers");

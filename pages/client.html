@@ -26,16 +26,18 @@
                     <button id="sendBTN" onclick="sendMSG()" disabled>Send</button>
                 </div>
                 <div id="buttonContainer">
-                    <input id="hostID"  placeholder="Enter Host-ID Here">
-                    <button id="joinStreamBTN">Join Stream</button>
+                    <input id="hostID" class="hide" placeholder="Enter Host-ID Here">
+                    <button id="signInBTN">Sign In</button>
+                    <button id="joinStreamBTN" class="hide">Join Stream</button>
                     <button id="closeStreamBTN" class="hide">Close Stream</button>
                     <button onclick="fullscreen(this)">Fullscreen</button>
                 </div>
             </div>
         </div>
 
-        <script src="https://www.gstatic.com/firebasejs/8.6.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.6.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
 
         <script src="../scripts/client.js"></script>
     </body>

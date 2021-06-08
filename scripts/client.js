@@ -10,6 +10,7 @@ const firebaseConfig = {
 
 if (!firebase.apps.length){ firebase.initializeApp(firebaseConfig); }
 const firestore = firebase.firestore();
+const auth = firebase.auth();
 
 const servers = {
     iceServers: [{
@@ -26,17 +27,26 @@ let myName = null;
 const connectionStatus = document.getElementById("connectionStatus");
 const video = document.getElementById("hostVideo"); 
 const hostID = document.getElementById("hostID");
+const signInBTN = document.getElementById("signInBTN");
 const joinStreamBTN = document.getElementById("joinStreamBTN");
 const closeStreamBTN = document.getElementById("closeStreamBTN");
 
-joinStreamBTN.onclick = async () => {
-    while(localStorage.getItem('userName') == null){
-        myName = prompt("Enter Your Full Name: ");
-        if (myName !== '' && myName !== null){
-            localStorage.setItem("userName",myName);
-        }
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        toggleHide(signInBTN);
+        toggleHide(hostID);
+        toggleHide(joinStreamBTN);
+        myName = user.displayName;
+        localStorage.setItem("userName",myName);
     }
-    myName = localStorage.getItem('userName');
+});
+
+signInBTN.onclick = async () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithRedirect(provider);
+}
+
+joinStreamBTN.onclick = async () => {
     if (hostID.value.length <1 ){ return alert("Enter Host ID to join a stream!")}
     remoteStream = new MediaStream();
     peerConnection.ontrack = (event) => {

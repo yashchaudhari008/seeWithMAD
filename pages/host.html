@@ -27,7 +27,8 @@
                     <button id="sendBTN" onclick="sendMSG()" disabled>Send</button>
                 </div>
                 <div id="buttonContainer">
-                    <button id="setStreamBTN">Set Stream</button>
+                    <button id="signInBTN">Sign In</button>
+                    <button id="setStreamBTN" class="hide">Set Stream</button>
                     <button id="hostStreamBTN" class="hide">Host Stream</button>
                     <button id="closeStreamBTN" class="hide">Close Stream</button>
                     <button onclick="fullscreen(this)">Fullscreen</button>
@@ -35,8 +36,9 @@
             </div>
         </div>
 
-        <script src="https://www.gstatic.com/firebasejs/8.6.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.6.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
 
         <script src="../scripts/host.js"></script>
     </body>
