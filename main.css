@@ -20,6 +20,7 @@ html,body {
 body {
     display: flex;
     color: var(--back_color);
+    overflow: hidden;
 }
 footer {
     position: absolute;

@@ -33,11 +33,12 @@ const closeStreamBTN = document.getElementById("closeStreamBTN");
 
 auth.onAuthStateChanged((user) => {
     if (user) {
-        toggleHide(signInBTN);
         toggleHide(hostID);
         toggleHide(joinStreamBTN);
         myName = user.displayName;
         localStorage.setItem("userName",myName);
+    } else {
+        toggleHide(signInBTN);
     }
 });
 
